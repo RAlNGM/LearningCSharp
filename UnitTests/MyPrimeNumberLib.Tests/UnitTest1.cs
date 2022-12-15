@@ -17,10 +17,28 @@ namespace MyPrimeNumberLib.Tests
             Assert.AreEqual(expected, actual);
         }
 
+
+
+
+
+
+
+
+
+
+
+        public bool expected_a_func(int year) { return (year % 400 == 0); }
+        public bool expected_b_func(int year) { return (year % 100 != 0); }
+        public bool expected_c_func(int year) { return (year % 4 == 0); }
+        public bool expected_b_and_c_func(int year) { return (expected_b_func(year) && expected_c_func(year)); }
+        public bool expected_general_func(int year) { return (expected_a_func(year) || expected_b_and_c_func(year)); }
+
         [TestMethod]
         public void is_leap_year_test()
         {
             List<bool> expected_general = new List<bool>() { true, false, false };
+
+            // ((year % 400 == 0) || (year % 100 != 0 && year % 4 == 0))
 
             List<bool> expected_year_mod_400_equal_zero = new List<bool>() { false, false, false };  // a
             List<bool> expected_year_mod_100_not_equal_zero = new List<bool>() { true, true, true }; // b
@@ -33,11 +51,11 @@ namespace MyPrimeNumberLib.Tests
             LeapYear year_is_leap = new LeapYear();
             for (int i = 0; i < years.Count; i++)
             {
-                bool actual_a = year_is_leap.isLeapYear(years[i]);
-                bool actual_b = year_is_leap.isLeapYear(years[i]);
-                bool actual_c = year_is_leap.isLeapYear(years[i]);
-                bool actual_d = year_is_leap.isLeapYear(years[i]);
-                bool actual_a_and_d = year_is_leap.isLeapYear(years[i]);
+                bool actual_a = expected_a_func(years[i]);
+                bool actual_b = expected_b_func(years[i]);
+                bool actual_c = expected_c_func(years[i]);
+                bool actual_d = expected_b_and_c_func(years[i]);
+                bool actual_a_and_d = expected_general_func(years[i]);
 
                 Assert.AreEqual(expected_year_mod_400_equal_zero[i], actual_a);
                 Assert.AreEqual(expected_year_mod_100_not_equal_zero[i], actual_b);
@@ -52,9 +70,5 @@ namespace MyPrimeNumberLib.Tests
                 Console.WriteLine($"{years[i]} {expected_a_and_d[i]} === {actual_a_and_d}");
             }
         }
-
-        // ((year % 400 == 0) || (year % 100 != 0 && year % 4 == 0))
-
-
     }
 }
