@@ -21,13 +21,20 @@
         {
             Console.Write("Ввод: ");
             number = Convert.ToInt32(Console.ReadLine());
-            if (isPrime(number))
+
+            if (Enumerable.Range(0, 10000).Contains(number))
             {
-                Console.WriteLine($"Число {number} простое!\n");
-            }
-            else
+                if (isPrime(number))
+                {
+                    Console.WriteLine($"Число {number} простое!\n");
+                }
+                else
+                {
+                    Console.WriteLine($"Число {number} не является простым!\n");
+                }
+            } else
             {
-                Console.WriteLine($"Число {number} не является простым!\n");
+                Console.WriteLine($"Число {number} вне диапазона!\n");
             }
         }
     }
