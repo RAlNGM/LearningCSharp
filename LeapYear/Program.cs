@@ -7,7 +7,7 @@
         {
             Console.Write("Ввод: ");
             number = Convert.ToInt32(Console.ReadLine());
-            if (number % 4 == 0)
+            if ((number % 400 == 0 ) || (number % 100 != 0 && number % 4 == 0 ))
             {
                 Console.WriteLine($"{number} Год является високосным!");
             } else
