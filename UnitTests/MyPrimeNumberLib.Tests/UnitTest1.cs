@@ -20,23 +20,40 @@ namespace MyPrimeNumberLib.Tests
         [TestMethod]
         public void is_leap_year_test()
         {
-            List<bool> excepted_ = new List<bool>()
-            {
-                true, false, false, false, true, false, false
-            };
-            List<int> years = new List<int>()
-            { 
-                2016, 2017, 2018, 2019, 2020, 2021, 2022
-            };
+            List<bool> expected_general = new List<bool>() { true, false, false };
+
+            List<bool> expected_year_mod_400_equal_zero = new List<bool>() { false, false, false };  // a
+            List<bool> expected_year_mod_100_not_equal_zero = new List<bool>() { true, true, true }; // b
+            List<bool> expected_year_mod_4_equal_zero = new List<bool>() { true, false, false };     // c
+            List<bool> expected_b_and_c = new List<bool>() { true, false, false };                   // d
+            List<bool> expected_a_and_d = new List<bool>() { true, false, false };
+
+            List<int> years = new List<int>() { 2020, 2021, 2022 };
 
             LeapYear year_is_leap = new LeapYear();
             for (int i = 0; i < years.Count; i++)
             {
-                bool actual = year_is_leap.isLeapYear(years[i]);
-                Console.WriteLine($"{years[i]} {excepted_[i]} === {actual}");
-                Assert.AreEqual(excepted_[i], actual);
+                bool actual_a = year_is_leap.isLeapYear(years[i]);
+                bool actual_b = year_is_leap.isLeapYear(years[i]);
+                bool actual_c = year_is_leap.isLeapYear(years[i]);
+                bool actual_d = year_is_leap.isLeapYear(years[i]);
+                bool actual_a_and_d = year_is_leap.isLeapYear(years[i]);
+
+                Assert.AreEqual(expected_year_mod_400_equal_zero[i], actual_a);
+                Assert.AreEqual(expected_year_mod_100_not_equal_zero[i], actual_b);
+                Assert.AreEqual(expected_year_mod_4_equal_zero[i], actual_c);
+                Assert.AreEqual(expected_b_and_c[i], actual_d);
+                Assert.AreEqual(expected_a_and_d[i], actual_a_and_d);
+
+                Console.WriteLine($"{years[i]} {expected_year_mod_400_equal_zero[i]} === {actual_a}");
+                Console.WriteLine($"{years[i]} {expected_year_mod_100_not_equal_zero[i]} === {actual_b}");
+                Console.WriteLine($"{years[i]} {expected_year_mod_4_equal_zero[i]} === {actual_c}");
+                Console.WriteLine($"{years[i]} {expected_b_and_c[i]} === {actual_d}");
+                Console.WriteLine($"{years[i]} {expected_a_and_d[i]} === {actual_a_and_d}");
             }
         }
+
+        // ((year % 400 == 0) || (year % 100 != 0 && year % 4 == 0))
 
 
     }
