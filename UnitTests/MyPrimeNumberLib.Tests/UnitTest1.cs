@@ -48,11 +48,11 @@ namespace MyPrimeNumberLib.Tests
                 Assert.AreEqual(expected_b_and_c[i], actual_d);
                 Assert.AreEqual(expected_a_and_d[i], actual_a_and_d);
 
-                Console.WriteLine($"{years[i]} {expected_year_mod_400_equal_zero[i]} === {actual_a}");
-                Console.WriteLine($"{years[i]} {expected_year_mod_100_not_equal_zero[i]} === {actual_b}");
-                Console.WriteLine($"{years[i]} {expected_year_mod_4_equal_zero[i]} === {actual_c}");
-                Console.WriteLine($"{years[i]} {expected_b_and_c[i]} === {actual_d}");
-                Console.WriteLine($"{years[i]} {expected_a_and_d[i]} === {actual_a_and_d}");
+                Console.WriteLine($"expected_year_mod_400_equal_zero:     {years[i]} {expected_year_mod_400_equal_zero[i]} === {actual_a}");
+                Console.WriteLine($"expected_year_mod_100_not_equal_zero: {years[i]} {expected_year_mod_100_not_equal_zero[i]} === {actual_b}");
+                Console.WriteLine($"expected_year_mod_4_equal_zero:       {years[i]} {expected_year_mod_4_equal_zero[i]} === {actual_c}");
+                Console.WriteLine($"expected_b_and_c:                     {years[i]} {expected_b_and_c[i]} === {actual_d}");
+                Console.WriteLine($"expected_a_and_d:                     {years[i]} {expected_a_and_d[i]} === {actual_a_and_d}");
             }
         }
     }
